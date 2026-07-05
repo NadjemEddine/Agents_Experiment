@@ -284,7 +284,7 @@
   ],
 
   "hardware": {
-    "sampling_frequency": 250,
+    "sampling_frequency": 500,
     "packet_delivery_ratio": 0.91,
     "ecg_quality": "Low"
   }
