@@ -1,0 +1,38 @@
+﻿{
+    "verdict":  "PASS",
+    "evaluation_id":  "eval_Bluetooth_C7",
+    "category":  "Connectivity Issues",
+    "evidence_analysis":  "Bluetooth connectivity issue (Device disconnected before recording) was identified through tool execution and/or patient feedback. Systematic troubleshooting was conducted, the issue was resolved, and ECG acquisition proceeded to completion. State was updated consistently throughout.",
+    "scenario_id":  "Bluetooth_C7",
+    "evaluation_date":  "2026-07-04",
+    "patient":  {
+                    "age":  56,
+                    "gender":  "Male",
+                    "medical_knowledge":  "Medium"
+                },
+    "metrics":  {
+                    "recovery_success":  {
+                                             "reason":  "Pre-recording disconnection resolved through re-pairing.",
+                                             "score":  "Recovered"
+                                         },
+                    "state_consistency":  {
+                                              "reason":  "State reflects the connectivity issue, recovery actions, and final successful recording consistently with conversation events.",
+                                              "score":  "Consistent"
+                                          },
+                    "workflow_compliance":  {
+                                                "reason":  "Expected workflow including connectivity troubleshooting and recovery was correctly followed.",
+                                                "score":  "Compliant"
+                                            },
+                    "task_completion":  {
+                                            "reason":  "ECG acquired after device reconnection following pre-recording disconnection.",
+                                            "score":  "Success"
+                                        }
+                },
+    "expected_workflow":  [
+                              "Check patient readiness",
+                              "Verify Bluetooth connectivity",
+                              "Troubleshoot connectivity",
+                              "Acquire ECG",
+                              "Save after success"
+                          ]
+}

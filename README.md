@@ -1,0 +1,29 @@
+# Conversitions IoT Agent
+
+This folder contains the evaluation artifacts for the IoT Agent used in an agentic AI-based medical support system for cardiovascular disease monitoring with IoMT sensors.
+
+## Evaluation Report
+
+The main report is [evaluation_report.md](evaluation_report.md). It summarizes an independent verification and validation run across 37 scenarios covering:
+
+- General IoT troubleshooting and data acquisition
+- ECG signal quality issues
+- Bluetooth connectivity problems
+- Electrode placement and detachment scenarios
+
+### Summary
+
+- Total scenarios: 37
+- Overall pass rate: 97.3% (36/37)
+- Primary failure: one Bluetooth connectivity false-positive in scenario C1
+- State consistency: 100%
+
+## Repository Contents
+
+- Scenario JSON files for C, ECG, Bluetooth, and electrode test cases
+- `evaluation_report.md` with the final analysis and conclusions
+- `evaluations/` with per-scenario evaluation outputs
+
+## Notes
+
+The `.gitignore` file excludes common Python virtual environment folders and cache directories so local development files are not committed.

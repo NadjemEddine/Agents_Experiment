@@ -1,0 +1,269 @@
+{
+  "scenario_id": "iot-agent-bluetooth-interference-v9",
+  "scenario_category": "IoT Data Acquisition - Connectivity Issues",
+
+  "patient": {
+    "age": 33,
+    "gender": "Male",
+    "medical_knowledge": "High"
+  },
+
+  "expected_workflow": [
+    "Agent introduces itself and asks if patient is ready",
+    "Patient confirms readiness",
+    "Agent explains Bluetooth check and calls check_connect",
+    "check_connect returns success",
+    "Agent explains device pairing and calls pair_device",
+    "pair_device returns success",
+    "Patient confirms device paired successfully",
+    "Agent explains ECG recording step and calls recording_request",
+    "recording_request returns success",
+    "Patient reports Bluetooth interference during recording",
+    "Agent acknowledges issue and suggests removing other Bluetooth devices",
+    "Patient removes other devices and confirms ready",
+    "Agent calls recording_request again",
+    "recording_request returns success",
+    "Patient confirms ECG recording completed",
+    "Agent calls check_record_ECG_correctly - returns 'ECG record saved successfully'",
+    "Agent calls finish_recording and provides completion summary"
+  ],
+
+  "conversation": [
+    {
+      "speaker": "Human",
+      "text": "",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Hello! I'm MediECG-Agent, your medical assistant AI. I'm here to help you record an ECG using your Bluetooth ECG sensor.\n\nAre you ready to begin?",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Yes, I'm ready.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Let's begin.\n\n**Step 1 — Bluetooth Check**",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "we succesfully check",
+      "tool_name": "check_connect",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Your Bluetooth is enabled.\n\n**Step 2 — Device Pairing**",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Pairing request sent successfully",
+      "tool_name": "pair_device",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! Please confirm when the ECG sensor is connected.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Device paired successfully",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect!\n\n**Step 3 — ECG Recording**\n\nI will now start a 60-second ECG recording. Please remain still.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Recording request sent successfully",
+      "tool_name": "recording_request",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "The recording has started. Please remain still.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Bluetooth interference! Recording interrupted.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I see there was Bluetooth interference during the recording. This can happen when there are other Bluetooth devices nearby.\n\n**What we need to do:**\n\n1. Turn off or move away from other Bluetooth devices\n2. Make sure there aren't too many devices connected to your phone\n3. Keep the ECG device close to your phone\n\nPlease remove other Bluetooth devices or interference sources and let me know when you're ready to try again.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "I turned off my smartwatch and disconnected my wireless earbuds. It should be better now.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Great! Let's try again.\n\n**Step 3 — ECG Recording (Retry)**\n\nI will now start another 60-second ECG recording.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Recording request sent successfully",
+      "tool_name": "recording_request",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "The recording has started. Please remain still.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "ECG recording completed",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! Now let me check if your ECG was saved correctly.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "ECG record saved successfully.",
+      "tool_name": "check_record_ECG_correctly",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! Your ECG recording has been successfully saved.\n\n**Step 5 — Finish**",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "we succesfully notify",
+      "tool_name": "finish_recording",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "**Recording Complete!**\n\nYour ECG recording is now complete and all your clinical data has been saved successfully.",
+      "tool_name": "",
+      "tool_call": ""
+    }
+  ],
+
+  "langgraph_state": {
+    "patient_id": "a7b8c9d0-e1f2-3456-klmno-789012345678",
+    "current_agent": "IoT Agent",
+    "session_status": "completed",
+    "ecg_data": {
+      "recording_status": "completed",
+      "duration": 60,
+      "lead": "Lead II",
+      "signal_quality": "High",
+      "r_peaks_detected": 73,
+      "heart_rate_bpm": 73,
+      "sampling_rate": 250,
+      "saved_to_db": true,
+      "data_validated": true,
+      "data_cleaned": true,
+      "attempt_count": 2,
+      "failed_attempts": 1,
+      "successful_attempt": 2,
+      "connectivity_issues": [
+        {
+          "attempt": 1,
+          "issue": "Bluetooth interference",
+          "resolution": "Patient removed other Bluetooth devices"
+        }
+      ],
+      "cleaned_data_path": "/storage/patients/a7b8c9d0-e1f2-3456-klmno-789012345678/ecg/ecg_cleaned_20260705_1800.json"
+    },
+    "error_logs": [
+      {
+        "tool": "recording_request",
+        "attempt": 1,
+        "error": "Bluetooth interference",
+        "patient_feedback": "Bluetooth interference! Recording interrupted.",
+        "timestamp": "2026-07-05T17:58:15Z",
+        "resolved": true,
+        "resolution": "Patient removed other Bluetooth devices"
+      }
+    ],
+    "orchestrator_queue": ["Daily Data Agent", "Imaging Agent"]
+  },
+
+  "tool_calls": [
+    {
+      "timestamp": "2026-07-05T17:55:15Z",
+      "tool": "check_connect",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "we succesfully check"
+    },
+    {
+      "timestamp": "2026-07-05T17:55:30Z",
+      "tool": "pair_device",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Pairing request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-05T17:56:15Z",
+      "tool": "recording_request",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Recording request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-05T17:57:15Z",
+      "tool": "recording_request",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Recording request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-05T17:58:15Z",
+      "tool": "check_record_ECG_correctly",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "ECG record saved successfully."
+    },
+    {
+      "timestamp": "2026-07-05T17:58:30Z",
+      "tool": "finish_recording",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "we succesfully notify"
+    }
+  ],
+
+  "hardware": {
+    "sampling_frequency": 250,
+    "packet_delivery_ratio": 0.72,
+    "ecg_quality": "High"
+  }
+}

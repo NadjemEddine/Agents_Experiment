@@ -1,0 +1,369 @@
+{
+  "scenario_id": "iot-agent-connection-failure-v1",
+  "scenario_category": "IoT Connection Troubleshooting",
+
+  "patient": {
+    "age": 45,
+    "gender": "Female",
+    "medical_knowledge": "Low",
+    "patient_id": "b2c3d4e5-f6a7-8901-bcde-f23456789012"
+  },
+
+  "expected_workflow": [
+    "Agent introduces itself and asks if patient is ready",
+    "Patient confirms readiness and asks what to do",
+    "Agent explains process and calls check_connect",
+    "check_connect returns success (but actually returns false positive)",
+    "Agent calls pair_device and gets success",
+    "Agent asks patient to complete pairing manually and confirm",
+    "Patient reports pairing failure (user cancelled chooser)",
+    "Agent explains issue and asks patient to pair manually via Bluetooth settings",
+    "Patient reports another pairing failure",
+    "Agent provides detailed troubleshooting and asks patient to try manual pairing again",
+    "Patient questions if Bluetooth was actually checked",
+    "Agent calls check_connect again (still returns false positive)",
+    "Patient reveals Bluetooth is actually disabled on their device",
+    "Agent explains the discrepancy and asks patient to enable Bluetooth manually",
+    "Patient confirms Bluetooth is now on",
+    "Agent proceeds with next steps"
+  ],
+
+  "conversation": [
+    {
+      "speaker": "Human",
+      "text": "",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Hello! I'm MediECG-Agent, your medical assistant AI. I'm here to help you record an ECG using your Bluetooth ECG sensor. I'll guide you through each step carefully.\n\nFirst, I'd like to make sure you're ready to begin. Are you comfortable and prepared to start the ECG recording process?\n\nPlease let me know when you're ready to proceed.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Okey, I am ready but what i should do?",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Great! I'm glad you're ready. I'll guide you through each step one by one. The process involves checking your Bluetooth connection, pairing your ECG device, and then recording your ECG for 60 seconds.\n\nFirst, I'll check if your Bluetooth is enabled on your device.\n\n**THINK:** I need to start with the Bluetooth check as per the workflow. I'll call check_connect first.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "we succesfully check",
+      "tool_name": "check_connect",
+      "tool_call": "{\"config\": {\"configurable\": {\"patient_id\": \"b2c3d4e5-f6a7-8901-bcde-f23456789012\", \"websocket\": \"ws_connection_abc123\"}}}"
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Good news! Your Bluetooth is enabled and working properly.\n\nNow, I'll move to the next step. I need to check if your ECG device is paired with your device.\n\n**THINK:** Now I should call pair_device to initiate the pairing process.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Pairing request sent successfully",
+      "tool_name": "pair_device",
+      "tool_call": "{\"config\": {\"configurable\": {\"patient_id\": \"b2c3d4e5-f6a7-8901-bcde-f23456789012\", \"websocket\": \"ws_connection_abc123\"}}}"
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! The pairing request has been sent successfully. Now, on your device, you should see a prompt to pair with your ECG sensor. Please go ahead and complete the pairing process on your device.\n\nOnce your ECG device is paired and connected to your device, please let me know by saying \"Paired and connected\" so I can proceed to the next step.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Waiting for user to approve pairing",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I understand you're waiting for the pairing approval. This is a normal part of the process. On your device screen, you should see a pairing request from your ECG sensor. You need to:\n\n1. Look for the pairing request notification on your device\n2. Tap \"Pair\" or \"Connect\" to accept the pairing\n3. Wait for the connection to be established\n\nOnce you've successfully paired the device and it shows as connected, please let me know by saying \"Paired and connected\" so I can continue with the ECG recording.\n\nTake your time - I'll wait for your confirmation.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Pairing failed: User cancelled the requestDevice() chooser.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I see the pairing failed because the pairing request was cancelled. This sometimes happens if the request times out or if you accidentally dismissed it.\n\n**THINK:** According to my workflow rules, when pairing fails, I need to explain what went wrong and ask the patient to pair manually, then wait for confirmation before retrying.\n\nLet me help you fix this. Here's what you need to do:\n\n1. Go to your device's Bluetooth settings\n2. Look for available devices - your ECG sensor should appear in the list\n3. Tap on your ECG sensor to initiate pairing manually\n4. Follow any on-screen instructions to complete the pairing\n\nOnce you've successfully paired the ECG device manually and it shows as \"Connected\" in your Bluetooth settings, please let me know by saying \"Paired and connected\".\n\nI'll wait for your confirmation before proceeding.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Pairing failed: User cancelled the requestDevice() chooser.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I understand the pairing is still not working. It seems the pairing request is being cancelled each time. This could happen for a few reasons:\n\n1. The ECG sensor might not be in pairing/discovery mode\n2. There might be interference from other Bluetooth devices\n3. The sensor's battery might be low\n\n**THINK:** Since pairing has failed twice, I should follow the workflow: explain what went wrong, ask the patient to pair manually, and wait for confirmation before retrying.\n\nLet's try a different approach. Please follow these steps:\n\n1. Make sure your ECG sensor is turned on and in pairing mode (usually indicated by a blinking light)\n2. Go to your device's Bluetooth settings and forget any previous ECG sensor connections\n3. Search for new Bluetooth devices\n4. When you see your ECG sensor in the list, select it to pair\n5. If asked for a PIN, try \"0000\" or \"1234\" (check your sensor's manual)\n\nOnce you've successfully paired the device manually through your Bluetooth settings and it shows as \"Connected\", please confirm by saying \"Paired and connected\".\n\nI'll wait for your signal to continue.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "did you check bluetooth",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "You're right to ask! Let me check your Bluetooth connection again to make sure it's still enabled.\n\n**THINK:** I should call check_connect again to verify Bluetooth is still on before attempting pairing again.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "we succesfully check",
+      "tool_name": "check_connect",
+      "tool_call": "{\"config\": {\"configurable\": {\"patient_id\": \"b2c3d4e5-f6a7-8901-bcde-f23456789012\", \"websocket\": \"ws_connection_abc123\"}}}"
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Good! Your Bluetooth is still enabled and working properly. The issue seems to be specifically with the pairing process, not with Bluetooth itself.\n\nNow, let's focus on getting your ECG sensor paired. As I mentioned before, please try these steps:\n\n1. Make sure your ECG sensor is turned on and in pairing mode (look for a blinking light)\n2. Go to your device's Bluetooth settings\n3. Forget any previous ECG sensor connections if they exist\n4. Search for new devices\n5. When you see your ECG sensor in the list, select it to pair\n\nOnce you've successfully paired the device through your Bluetooth settings and it shows as \"Connected\", please let me know by saying \"Paired and connected\".\n\nI'm here to help if you encounter any issues during this process.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "but the bluetooth is close in my device how you tell me that enabled",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "You're absolutely right to point this out! If Bluetooth is closed/disabled on your device, then there must be an issue with the check I performed.\n\n**THINK:** The tool reported \"we successfully check\" which suggests Bluetooth is enabled, but you're telling me it's actually closed. This could be a discrepancy between what the tool detects and the actual state. According to my workflow rules, when Bluetooth is reported as OFF, I need to explain the issue and ask you to enable it, then wait for confirmation before retrying.\n\nLet me help you fix this:\n\n1. **Please enable Bluetooth on your device** - you can usually do this by:\n   - Swiping down from the top of your screen to access quick settings\n   - Tapping the Bluetooth icon to turn it on\n   - Or going to Settings > Bluetooth and turning it on\n\n2. Once Bluetooth is enabled on your device, please let me know by saying \"Bluetooth is now on\"\n\n3. After you confirm, I'll check the Bluetooth connection again to make sure everything is working properly.\n\nPlease go ahead and enable Bluetooth on your device, then let me know when it's done.",
+      "tool_name": "",
+      "tool_call": ""
+    }
+  ],
+
+  "langgraph_state": {
+    "patient_id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+    "current_agent": "IoT Agent",
+    "session_status": "troubleshooting",
+    "messages": [
+      {
+        "role": "human",
+        "content": ""
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! I'm MediECG-Agent..."
+      },
+      {
+        "role": "human",
+        "content": "Okey, I am ready but what i should do?"
+      },
+      {
+        "role": "assistant",
+        "content": "Great! I'm glad you're ready..."
+      },
+      {
+        "role": "tool",
+        "content": "we succesfully check"
+      },
+      {
+        "role": "assistant",
+        "content": "Good news! Your Bluetooth is enabled..."
+      },
+      {
+        "role": "tool",
+        "content": "Pairing request sent successfully"
+      },
+      {
+        "role": "assistant",
+        "content": "Perfect! The pairing request has been sent..."
+      },
+      {
+        "role": "human",
+        "content": "Waiting for user to approve pairing"
+      },
+      {
+        "role": "assistant",
+        "content": "I understand you're waiting for the pairing approval..."
+      },
+      {
+        "role": "human",
+        "content": "Pairing failed: User cancelled the requestDevice() chooser."
+      },
+      {
+        "role": "assistant",
+        "content": "I see the pairing failed because the pairing request was cancelled..."
+      },
+      {
+        "role": "human",
+        "content": "Pairing failed: User cancelled the requestDevice() chooser."
+      },
+      {
+        "role": "assistant",
+        "content": "I understand the pairing is still not working..."
+      },
+      {
+        "role": "human",
+        "content": "did you check bluetooth"
+      },
+      {
+        "role": "assistant",
+        "content": "You're right to ask! Let me check your Bluetooth connection again..."
+      },
+      {
+        "role": "tool",
+        "content": "we succesfully check"
+      },
+      {
+        "role": "assistant",
+        "content": "Good! Your Bluetooth is still enabled and working properly..."
+      },
+      {
+        "role": "human",
+        "content": "but the bluetooth is close in my device how you tell me that enabled"
+      },
+      {
+        "role": "assistant",
+        "content": "You're absolutely right to point this out!..."
+      }
+    ],
+    "ecg_data": {
+      "recording_status": "not_started",
+      "connection_status": "troubleshooting",
+      "bluetooth_attempts": 2,
+      "pairing_attempts": 2,
+      "tool_discrepancy_detected": true,
+      "issue": "Tool check_connect returned false positive - reported Bluetooth enabled when it was actually disabled",
+      "resolution_required": "Patient needs to enable Bluetooth manually"
+    },
+    "error_logs": [
+      {
+        "tool": "check_connect",
+        "attempt": 1,
+        "issue": "False positive - reported Bluetooth enabled but patient confirmed it was disabled",
+        "timestamp": "2026-07-04T15:10:15Z",
+        "severity": "High",
+        "impact": "Caused confusion in pairing process and led to multiple failed pairing attempts"
+      },
+      {
+        "tool": "pair_device",
+        "attempt": 1,
+        "error": "User cancelled the requestDevice() chooser",
+        "timestamp": "2026-07-04T15:10:45Z",
+        "resolution": "Patient attempted manual pairing"
+      },
+      {
+        "tool": "pair_device",
+        "attempt": 2,
+        "error": "User cancelled the requestDevice() chooser",
+        "timestamp": "2026-07-04T15:11:15Z",
+        "resolution": "Patient attempted manual pairing again"
+      },
+      {
+        "event": "patient_feedback",
+        "content": "but the bluetooth is close in my device how you tell me that enabled",
+        "timestamp": "2026-07-04T15:11:45Z",
+        "significance": "Revealed discrepancy between tool output and actual device state"
+      }
+    ],
+    "orchestrator_queue": ["Daily Data Agent", "Imaging Agent"],
+    "tool_call_history": [
+      {
+        "sequence": 1,
+        "tool": "check_connect",
+        "timestamp": "2026-07-04T15:09:55Z",
+        "result": "we succesfully check",
+        "accuracy_issue": true
+      },
+      {
+        "sequence": 2,
+        "tool": "pair_device",
+        "timestamp": "2026-07-04T15:10:30Z",
+        "result": "Pairing request sent successfully"
+      },
+      {
+        "sequence": 3,
+        "tool": "check_connect",
+        "timestamp": "2026-07-04T15:11:25Z",
+        "result": "we succesfully check",
+        "accuracy_issue": true
+      }
+    ]
+  },
+
+  "tool_calls": [
+    {
+      "timestamp": "2026-07-04T15:09:55Z",
+      "tool": "check_connect",
+      "agent": "IoT Agent",
+      "params": {
+        "config": {
+          "configurable": {
+            "patient_id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+            "websocket": "ws_connection_abc123"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "we succesfully check",
+        "actual_state": "BLUETOOTH_DISABLED",
+        "discrepancy": true
+      }
+    },
+    {
+      "timestamp": "2026-07-04T15:10:30Z",
+      "tool": "pair_device",
+      "agent": "IoT Agent",
+      "params": {
+        "config": {
+          "configurable": {
+            "patient_id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+            "websocket": "ws_connection_abc123"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Pairing request sent successfully",
+        "user_response": "User cancelled the requestDevice() chooser"
+      }
+    },
+    {
+      "timestamp": "2026-07-04T15:11:25Z",
+      "tool": "check_connect",
+      "agent": "IoT Agent",
+      "params": {
+        "config": {
+          "configurable": {
+            "patient_id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+            "websocket": "ws_connection_abc123"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "we succesfully check",
+        "actual_state": "BLUETOOTH_DISABLED",
+        "discrepancy": true,
+        "patient_feedback": "but the bluetooth is close in my device"
+      }
+    }
+  ],
+
+  "hardware": {
+    "sampling_frequency": 250,
+    "packet_delivery_ratio": 0.0,
+    "ecg_quality": "Not_Applicable"
+  }
+}

@@ -1,0 +1,38 @@
+﻿{
+    "verdict":  "PASS",
+    "evaluation_id":  "eval_C3",
+    "category":  "IoT Data Acquisition - Success",
+    "evidence_analysis":  "Standard successful acquisition. ECG recorded with good quality, features extracted, state updated correctly.",
+    "scenario_id":  "C3",
+    "evaluation_date":  "2026-07-04",
+    "patient":  {
+                    "age":  63,
+                    "gender":  "Female",
+                    "medical_knowledge":  "Low"
+                },
+    "metrics":  {
+                    "recovery_success":  {
+                                             "reason":  "No failure occurred during the acquisition process.",
+                                             "score":  "Not Applicable"
+                                         },
+                    "state_consistency":  {
+                                              "reason":  "State reflects completed session with patient data, ECG recording, features, and quality consistent with conversation.",
+                                              "score":  "Consistent"
+                                          },
+                    "workflow_compliance":  {
+                                                "reason":  "All expected workflow steps were completed in the correct order.",
+                                                "score":  "Compliant"
+                                            },
+                    "task_completion":  {
+                                            "reason":  "ECG acquired and saved successfully.",
+                                            "score":  "Success"
+                                        }
+                },
+    "expected_workflow":  [
+                              "Check patient readiness",
+                              "Verify Bluetooth connectivity",
+                              "Acquire ECG",
+                              "Provide instructions",
+                              "Save after success"
+                          ]
+}

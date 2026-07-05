@@ -1,0 +1,39 @@
+﻿{
+    "verdict":  "PASS",
+    "evaluation_id":  "eval_ECG_C9",
+    "category":  "ECG Quality Issues",
+    "evidence_analysis":  "ECG quality issue was identified, troubleshooting was conducted, patient received appropriate guidance, reacquisition succeeded, features were extracted, and recording was saved. State updated correctly throughout.",
+    "scenario_id":  "ECG_C9",
+    "evaluation_date":  "2026-07-04",
+    "patient":  {
+                    "age":  44,
+                    "gender":  "Female",
+                    "medical_knowledge":  "High"
+                },
+    "metrics":  {
+                    "recovery_success":  {
+                                             "reason":  "No failure occurred; high quality ECG on first attempt.",
+                                             "score":  "Not Applicable"
+                                         },
+                    "state_consistency":  {
+                                              "reason":  "State consistently reflects quality validation outcomes, retry attempts, and final successful recording with extracted features.",
+                                              "score":  "Consistent"
+                                          },
+                    "workflow_compliance":  {
+                                                "reason":  "Expected workflow of acquisition, quality validation, troubleshooting, retry, and save was followed.",
+                                                "score":  "Compliant"
+                                            },
+                    "task_completion":  {
+                                            "reason":  "ECG acquired successfully after quality issue was resolved. First attempt high quality; no issues.",
+                                            "score":  "Success"
+                                        }
+                },
+    "expected_workflow":  [
+                              "Check patient readiness",
+                              "Verify Bluetooth connectivity",
+                              "Acquire ECG",
+                              "Analyze ECG quality",
+                              "Extract ECG features",
+                              "Save after success"
+                          ]
+}

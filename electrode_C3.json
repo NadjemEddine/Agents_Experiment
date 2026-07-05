@@ -1,0 +1,355 @@
+{
+  "scenario_id": "iot-agent-electrode-detachment-v3",
+  "scenario_category": "IoT Data Acquisition - Electrode Issues",
+
+  "patient": {
+    "age": 51,
+    "gender": "Female",
+    "medical_knowledge": "Medium"
+  },
+
+  "expected_workflow": [
+    "Agent introduces itself and asks if patient is ready",
+    "Patient confirms readiness with detailed response",
+    "Agent explains Bluetooth check and calls check_connect",
+    "check_connect returns success",
+    "Agent explains device pairing and calls pair_device",
+    "pair_device returns success",
+    "Agent provides detailed pairing instructions and asks patient to confirm",
+    "Patient reports waiting for pairing approval",
+    "Agent guides patient to approve pairing on their device",
+    "Patient confirms device paired successfully",
+    "Agent explains ECG recording step and provides instructions to remain still",
+    "Agent calls recording_request",
+    "recording_request returns success",
+    "Patient reports electrodes detached during recording",
+    "Agent acknowledges issue and provides troubleshooting steps",
+    "Patient reports recording aborted - electrodes detached again",
+    "Agent provides detailed troubleshooting with skin preparation guidance",
+    "Patient confirms electrodes reattached firmly and ready to retry",
+    "Agent acknowledges patient's actions and starts another recording",
+    "Agent calls recording_request (returns success)",
+    "Patient confirms ECG recording completed successfully",
+    "check_record_ECG_correctly returns success",
+    "Agent calls finish_recording and provides completion summary"
+  ],
+
+  "conversation": [
+    {
+      "speaker": "Human",
+      "text": "",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Hello! I'm MediECG-Agent, your Medical Assistant AI. I'm here to help you record an ECG using a Bluetooth ECG sensor. I'll guide you through each step carefully, and I'll wait for your confirmation before proceeding with anything.\n\nAre you ready to begin? Please let me know when you're ready to start.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Yes, I'm ready. I'm comfortable and the room is quiet. You can start guiding me through it.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Great! I'm glad you're ready and comfortable. Let's begin step by step.\n\n**Step 1 — Bluetooth Check**\n\nI'm now going to check if your Bluetooth is enabled on your device. This is necessary to connect to the ECG sensor.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "we succesfully check",
+      "tool_name": "check_connect",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! The check was successful, which means your Bluetooth is enabled and ready to use.\n\n**Step 2 — Device Pairing**\n\nNow I will check if your ECG device is paired with your device. I'll send a pairing request to connect to your Bluetooth ECG sensor.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Pairing request sent successfully",
+      "tool_name": "pair_device",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! The pairing request was sent successfully. Now, on your device, you should see a prompt to pair with the ECG sensor. Please follow these steps:\n\n1. Look for the ECG device in your Bluetooth settings\n2. Select it and confirm the pairing\n3. Wait for it to show as \"Connected\"\n\nOnce you've successfully paired and connected the ECG device, please let me know by saying \"Paired and connected\" so we can proceed to the recording.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Waiting for user to approve pairing",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I understand you're waiting for the pairing to be approved. On your device, you should see a Bluetooth pairing request for the ECG sensor. Please:\n\n1. Go to your device's Bluetooth settings\n2. Look for the ECG device (it might have a name like \"ECG Sensor\" or similar)\n3. Select it and confirm the pairing\n4. Wait until it shows as \"Connected\"\n\nOnce you've successfully paired and connected the ECG device, please let me know by saying \"Paired and connected\" so we can proceed to the next step.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Device paired successfully",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! Thank you for confirming that the device is paired successfully.\n\n**Step 3 — ECG Recording**\n\nNow everything is ready for the ECG recording. I will start a 60-second ECG recording. During this time, please remain as still as possible to get a clear reading. Avoid talking or moving during the recording.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Recording request sent successfully",
+      "tool_name": "recording_request",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Great! The recording request has been sent successfully. The ECG recording is now in progress. Please remain still for the full 60 seconds while the device captures your heart's electrical activity.\n\nOnce the recording is complete, I'll proceed to check if it was saved correctly.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Electrodes detached! Recording stopped.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I understand that the electrodes detached during the recording, which caused the recording to stop. This can happen if the electrodes aren't properly attached or if there's movement during the recording.\n\nTo fix this, please:\n\n1. Check that all electrodes are firmly attached to your skin\n2. Make sure the skin where the electrodes are placed is clean and dry\n3. Ensure the cables are properly connected to the electrodes\n\nOnce you've reattached the electrodes securely, please let me know if you'd like me to retry the 60-second ECG recording. Would you like to try again?",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Recording aborted: Electrodes detached",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I understand the recording was aborted because the electrodes detached. This is a common issue that can be easily fixed.\n\n**What you need to do:**\n\n1. **Check the electrodes:** Make sure all electrodes are firmly attached to your skin. They should stick well without being loose.\n2. **Skin preparation:** Ensure the skin where the electrodes are placed is clean, dry, and free of lotions or oils.\n3. **Cable connections:** Check that the cables are properly connected to each electrode.\n4. **Stay still:** Once reattached, try to remain as still as possible during the recording.\n\nPlease take your time to reattach the electrodes properly. When you're ready and the electrodes are securely in place, let me know if you'd like me to retry the 60-second ECG recording.\n\nWould you like to try the recording again?",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Okay, I think I got it now. The one on my chest was a little loose. I've wiped my skin and pressed them all down firmly. Yes, I'm ready to try the recording again. Let's do it.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! Thank you for fixing the electrodes. It's common for the chest electrode to need a bit more attention since that area moves with breathing. You've done exactly the right thing by cleaning the skin and pressing them down firmly.\n\n**Step 3 — ECG Recording (Retry)**\n\nI will now start another 60-second ECG recording. Please remain as still as possible during this time. Try to relax and breathe normally, but avoid any unnecessary movement.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Recording request sent successfully",
+      "tool_name": "recording_request",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! The recording request has been sent successfully. The 60-second ECG recording is now in progress. Please remain still while the device captures your heart's electrical activity.\n\nI'll wait for the recording to complete, and then we'll check if it was saved correctly.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "ECG recording completed",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Great news! The ECG recording has been completed successfully.\n\n**Step 4 — Check Database Integrity**\n\nNow I will check if your ECG recording was saved correctly in our system. This ensures that all the data was properly recorded without any errors or missing information.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "ECG record saved successfully.",
+      "tool_name": "check_record_ECG_correctly",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! The ECG record has been saved successfully and all the data has been validated and cleaned. This means your recording is complete and stored properly in our system.\n\n**Step 5 — Finish**\n\nNow I'll complete the recording process and notify you that all your ECG data has been collected successfully.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "we succesfully notify",
+      "tool_name": "finish_recording",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! I have successfully notified you that all your ECG data has been collected.\n\n**Recording Complete!**\n\nYour 60-second ECG recording is now complete and has been successfully saved in our system. All your clinical data has been collected properly. Thank you for your cooperation throughout the process, especially when we needed to reattach the electrodes.\n\nYou can now remove the electrodes from your skin. If you have any questions about what happens next with your ECG data, please consult with your healthcare provider.\n\nIs there anything else I can help you with today?",
+      "tool_name": "",
+      "tool_call": ""
+    }
+  ],
+
+  "langgraph_state": {
+    "patient_id": "e1f2a3b4-c5d6-7890-klmn-123456789012",
+    "current_agent": "IoT Agent",
+    "session_status": "completed",
+    "messages": [
+      {"role": "human", "content": ""},
+      {"role": "assistant", "content": "Hello! I'm MediECG-Agent..."},
+      {"role": "human", "content": "Yes, I'm ready. I'm comfortable and the room is quiet..."},
+      {"role": "assistant", "content": "Great! I'm glad you're ready..."},
+      {"role": "assistant", "content": "**Step 1 — Bluetooth Check**..."},
+      {"role": "tool", "content": "we succesfully check"},
+      {"role": "assistant", "content": "Perfect! The check was successful..."},
+      {"role": "assistant", "content": "**Step 2 — Device Pairing**..."},
+      {"role": "tool", "content": "Pairing request sent successfully"},
+      {"role": "assistant", "content": "Excellent! The pairing request was sent successfully..."},
+      {"role": "human", "content": "Waiting for user to approve pairing"},
+      {"role": "assistant", "content": "I understand you're waiting for the pairing to be approved..."},
+      {"role": "human", "content": "Device paired successfully"},
+      {"role": "assistant", "content": "Perfect! Thank you for confirming..."},
+      {"role": "assistant", "content": "**Step 3 — ECG Recording**..."},
+      {"role": "tool", "content": "Recording request sent successfully"},
+      {"role": "assistant", "content": "Great! The recording request has been sent successfully..."},
+      {"role": "human", "content": "Electrodes detached! Recording stopped."},
+      {"role": "assistant", "content": "I understand that the electrodes detached during the recording..."},
+      {"role": "human", "content": "Recording aborted: Electrodes detached"},
+      {"role": "assistant", "content": "I understand the recording was aborted..."},
+      {"role": "human", "content": "Okay, I think I got it now..."},
+      {"role": "assistant", "content": "Excellent! Thank you for fixing the electrodes..."},
+      {"role": "assistant", "content": "**Step 3 — ECG Recording (Retry)**..."},
+      {"role": "tool", "content": "Recording request sent successfully"},
+      {"role": "assistant", "content": "Perfect! The recording request has been sent successfully..."},
+      {"role": "human", "content": "ECG recording completed"},
+      {"role": "assistant", "content": "Great news! The ECG recording has been completed successfully..."},
+      {"role": "assistant", "content": "**Step 4 — Check Database Integrity**..."},
+      {"role": "tool", "content": "ECG record saved successfully."},
+      {"role": "assistant", "content": "Excellent! The ECG record has been saved successfully..."},
+      {"role": "assistant", "content": "**Step 5 — Finish**..."},
+      {"role": "tool", "content": "we succesfully notify"},
+      {"role": "assistant", "content": "Perfect! I have successfully notified you..."}
+    ],
+    "ecg_data": {
+      "recording_status": "completed",
+      "duration": 60,
+      "lead": "Lead II",
+      "signal_quality": "High",
+      "r_peaks_detected": 68,
+      "heart_rate_bpm": 68,
+      "sampling_rate": 250,
+      "saved_to_db": true,
+      "data_validated": true,
+      "data_cleaned": true,
+      "attempt_count": 3,
+      "failed_attempts": 2,
+      "successful_attempt": 3,
+      "electrode_issues": [
+        {
+          "attempt": 1,
+          "issue": "Electrodes detached - chest electrode loose",
+          "resolution": "Patient reattached electrodes"
+        },
+        {
+          "attempt": 2,
+          "issue": "Electrodes detached again",
+          "resolution": "Patient cleaned skin and pressed electrodes firmly"
+        }
+      ],
+      "cleaned_data_path": "/storage/patients/e1f2a3b4-c5d6-7890-klmn-123456789012/ecg/ecg_cleaned_20260704_1900.json"
+    },
+    "error_logs": [
+      {
+        "tool": "recording_request",
+        "attempt": 1,
+        "error": "Electrodes detached - recording stopped",
+        "patient_feedback": "Electrodes detached! Recording stopped.",
+        "timestamp": "2026-07-04T18:58:45Z",
+        "resolved": true
+      },
+      {
+        "tool": "recording_request",
+        "attempt": 2,
+        "error": "Electrodes detached - recording aborted",
+        "patient_feedback": "Recording aborted: Electrodes detached",
+        "timestamp": "2026-07-04T18:59:30Z",
+        "resolved": true,
+        "resolution_details": "Patient identified chest electrode was loose, cleaned skin, and pressed electrodes firmly"
+      }
+    ],
+    "orchestrator_queue": ["Daily Data Agent", "Imaging Agent"]
+  },
+
+  "tool_calls": [
+    {
+      "timestamp": "2026-07-04T18:56:15Z",
+      "tool": "check_connect",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "we succesfully check"
+    },
+    {
+      "timestamp": "2026-07-04T18:56:30Z",
+      "tool": "pair_device",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Pairing request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-04T18:57:15Z",
+      "tool": "recording_request",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Recording request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-04T18:58:15Z",
+      "tool": "recording_request",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Recording request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-04T18:59:30Z",
+      "tool": "recording_request",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Recording request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-04T19:00:45Z",
+      "tool": "check_record_ECG_correctly",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "ECG record saved successfully."
+    },
+    {
+      "timestamp": "2026-07-04T19:01:00Z",
+      "tool": "finish_recording",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "we succesfully notify"
+    }
+  ],
+
+  "hardware": {
+    "sampling_frequency": 250,
+    "packet_delivery_ratio": 0.90,
+    "ecg_quality": "High"
+  }
+}

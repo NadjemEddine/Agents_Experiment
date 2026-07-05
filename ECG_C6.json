@@ -1,0 +1,372 @@
+{
+  "scenario_id": "iot-agent-ecg-quality-no-qrs-v6",
+  "scenario_category": "IoT Data Acquisition - ECG Quality Issues",
+
+  "patient": {
+    "age": 49,
+    "gender": "Female",
+    "medical_knowledge": "Low"
+  },
+
+  "expected_workflow": [
+    "Agent introduces itself and asks if patient is ready",
+    "Patient confirms readiness",
+    "Agent explains Bluetooth check and calls check_connect",
+    "check_connect returns success",
+    "Agent explains device pairing and calls pair_device",
+    "pair_device returns success",
+    "Patient confirms device paired successfully",
+    "Agent explains ECG recording step and calls recording_request",
+    "recording_request returns success",
+    "Patient confirms ECG recording completed",
+    "Agent calls check_record_ECG_correctly - returns 'ECG validation failed: No R-peaks detected'",
+    "Agent explains the issue and asks patient to check electrodes and try again",
+    "Patient checks electrodes and confirms ready to retry",
+    "Agent calls recording_request again",
+    "recording_request returns success",
+    "Patient confirms ECG recording completed",
+    "Agent calls check_record_ECG_correctly - returns 'ECG validation failed: No R-peaks detected' (still failing)",
+    "Agent explains the issue and suggests more thorough troubleshooting",
+    "Patient asks what to do",
+    "Agent provides detailed troubleshooting steps",
+    "Patient follows steps and confirms ready to try again",
+    "Agent calls recording_request a third time",
+    "recording_request returns success",
+    "Patient confirms ECG recording completed",
+    "Agent calls check_record_ECG_correctly - returns 'ECG record saved successfully'",
+    "Agent calls finish_recording and provides completion summary"
+  ],
+
+  "conversation": [
+    {
+      "speaker": "Human",
+      "text": "",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Hello! I'm MediECG-Agent, your medical assistant. I'm here to help you record an ECG using your Bluetooth ECG sensor.\n\nAre you ready to begin?",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Yes, I'm ready. This is my first time doing this.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I'll guide you through every step. Let's begin.\n\n**Step 1 — Bluetooth Check**",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "we succesfully check",
+      "tool_name": "check_connect",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! Your Bluetooth is enabled.\n\n**Step 2 — Device Pairing**",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Pairing request sent successfully",
+      "tool_name": "pair_device",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! Please check your device and confirm when the ECG sensor is connected.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Device paired successfully",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect!\n\n**Step 3 — ECG Recording**\n\nI will now start a 60-second ECG recording. Please remain still.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Recording request sent successfully",
+      "tool_name": "recording_request",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "The recording has started. Please remain still.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "ECG recording completed",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! Now let me check if your ECG was saved correctly.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "ECG validation failed: No R-peaks detected",
+      "tool_name": "check_record_ECG_correctly",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I see there's an issue. The system couldn't detect the characteristic R-peaks in the ECG signal. This usually happens when there's too much movement or poor electrode contact.\n\n**What we should do:**\n\n1. Check that all electrodes are firmly attached to your skin\n2. Make sure your skin is clean and dry where the electrodes are placed\n\nCould you please check the electrodes and let me know when you're ready to try again?",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "I checked the electrodes. They seem fine. Let's try again.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Great! Let's try again.\n\n**Step 3 — ECG Recording (Retry)**",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Recording request sent successfully",
+      "tool_name": "recording_request",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "The recording has started. Please remain still.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "ECG recording completed",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! Now let me check this recording.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "ECG validation failed: No R-peaks detected",
+      "tool_name": "check_record_ECG_correctly",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I'm sorry, but the recording still didn't work. The system still can't detect the R-peaks.\n\n**Let's troubleshoot more thoroughly:**\n\n1. Try cleaning the skin areas with a dry cloth to remove any oils\n2. Press each electrode firmly for 5-10 seconds to ensure good contact\n3. Make sure the electrode cables are securely connected to the device\n4. Sit with your feet flat on the floor and arms relaxed\n\nPlease try these steps and let me know when you're ready for another attempt.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Okay, I cleaned my skin and pressed the electrodes firmly. I'm ready to try again.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! Let's try one more time.\n\n**Step 3 — ECG Recording (Third Attempt)**",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Recording request sent successfully",
+      "tool_name": "recording_request",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "The recording has started. Please remain still and relaxed.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "ECG recording completed",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! Now let me check this recording.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "ECG record saved successfully.",
+      "tool_name": "check_record_ECG_correctly",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! Your ECG recording has been successfully saved.\n\n**Step 5 — Finish**\n\nNow I'll complete the recording process.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "we succesfully notify",
+      "tool_name": "finish_recording",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "**Recording Complete!**\n\nYour ECG recording is now complete and all your clinical data has been saved successfully. Thank you for your patience through the troubleshooting process.",
+      "tool_name": "",
+      "tool_call": ""
+    }
+  ],
+
+  "langgraph_state": {
+    "patient_id": "f4a5b6c7-d8e9-0123-xyza-456789012345",
+    "current_agent": "IoT Agent",
+    "session_status": "completed",
+    "ecg_data": {
+      "recording_status": "completed",
+      "duration": 60,
+      "lead": "Lead II",
+      "signal_quality": "High",
+      "r_peaks_detected": 71,
+      "heart_rate_bpm": 71,
+      "sampling_rate": 250,
+      "saved_to_db": true,
+      "data_validated": true,
+      "data_cleaned": true,
+      "attempt_count": 3,
+      "failed_attempts": 2,
+      "successful_attempt": 3,
+      "quality_issues": [
+        {
+          "attempt": 1,
+          "issue": "No R-peaks detected",
+          "probable_cause": "Poor electrode contact",
+          "resolution": "Patient checked electrodes"
+        },
+        {
+          "attempt": 2,
+          "issue": "No R-peaks detected",
+          "probable_cause": "Skin oils or poor contact",
+          "resolution": "Patient cleaned skin and pressed electrodes firmly"
+        }
+      ],
+      "cleaned_data_path": "/storage/patients/f4a5b6c7-d8e9-0123-xyza-456789012345/ecg/ecg_cleaned_20260705_1130.json"
+    },
+    "error_logs": [
+      {
+        "tool": "check_record_ECG_correctly",
+        "attempt": 1,
+        "error": "ECG validation failed: No R-peaks detected",
+        "timestamp": "2026-07-05T11:28:15Z",
+        "resolved": true
+      },
+      {
+        "tool": "check_record_ECG_correctly",
+        "attempt": 2,
+        "error": "ECG validation failed: No R-peaks detected",
+        "timestamp": "2026-07-05T11:29:30Z",
+        "resolved": true,
+        "resolution": "Patient cleaned skin and pressed electrodes firmly"
+      }
+    ],
+    "orchestrator_queue": ["Daily Data Agent", "Imaging Agent"]
+  },
+
+  "tool_calls": [
+    {
+      "timestamp": "2026-07-05T11:25:15Z",
+      "tool": "check_connect",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "we succesfully check"
+    },
+    {
+      "timestamp": "2026-07-05T11:25:30Z",
+      "tool": "pair_device",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Pairing request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-05T11:26:15Z",
+      "tool": "recording_request",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Recording request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-05T11:27:15Z",
+      "tool": "check_record_ECG_correctly",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "ECG validation failed: No R-peaks detected"
+    },
+    {
+      "timestamp": "2026-07-05T11:28:30Z",
+      "tool": "recording_request",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Recording request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-05T11:29:30Z",
+      "tool": "check_record_ECG_correctly",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "ECG validation failed: No R-peaks detected"
+    },
+    {
+      "timestamp": "2026-07-05T11:30:30Z",
+      "tool": "recording_request",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Recording request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-05T11:31:30Z",
+      "tool": "check_record_ECG_correctly",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "ECG record saved successfully."
+    },
+    {
+      "timestamp": "2026-07-05T11:31:45Z",
+      "tool": "finish_recording",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "we succesfully notify"
+    }
+  ],
+
+  "hardware": {
+    "sampling_frequency": 250,
+    "packet_delivery_ratio": 0.88,
+    "ecg_quality": "Low"
+  }
+}

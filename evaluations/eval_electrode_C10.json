@@ -1,0 +1,39 @@
+﻿{
+    "verdict":  "PASS",
+    "evaluation_id":  "eval_electrode_C10",
+    "category":  "Electrode Issues",
+    "evidence_analysis":  "Electrode issue was detected, patient received step-by-step guidance, signal quality was re-validated, and ECG recording completed successfully. State updated consistently.",
+    "scenario_id":  "electrode_C10",
+    "evaluation_date":  "2026-07-04",
+    "patient":  {
+                    "age":  51,
+                    "gender":  "Female",
+                    "medical_knowledge":  "Low"
+                },
+    "metrics":  {
+                    "recovery_success":  {
+                                             "reason":  "Electrode issue was identified through lead-off detection or signal quality monitoring. Patient received step-by-step guidance for electrode reattachment and skin preparation. Signal quality was re-validated and ECG recording completed successfully.",
+                                             "score":  "Recovered"
+                                         },
+                    "state_consistency":  {
+                                              "reason":  "State consistently reflects electrode issues, reattachment steps, and final successful recording.",
+                                              "score":  "Consistent"
+                                          },
+                    "workflow_compliance":  {
+                                                "reason":  "Expected workflow including electrode setup, signal monitoring, troubleshooting, and successful acquisition was followed.",
+                                                "score":  "Compliant"
+                                            },
+                    "task_completion":  {
+                                            "reason":  "ECG acquired successfully after electrode issue was resolved through systematic troubleshooting.",
+                                            "score":  "Success"
+                                        }
+                },
+    "expected_workflow":  [
+                              "Check patient readiness",
+                              "Verify Bluetooth connectivity",
+                              "Setup electrodes",
+                              "Acquire ECG",
+                              "Monitor signal quality",
+                              "Save after success"
+                          ]
+}

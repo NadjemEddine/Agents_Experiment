@@ -1,0 +1,291 @@
+{
+  "scenario_id": "iot-agent-ecg-quality-no-qrs-v1",
+  "scenario_category": "IoT Data Acquisition - ECG Quality Issues",
+
+  "patient": {
+    "age": 62,
+    "gender": "Male",
+    "medical_knowledge": "Low"
+  },
+
+  "expected_workflow": [
+    "Agent introduces itself and asks if patient is ready",
+    "Patient confirms readiness",
+    "Agent explains Bluetooth check and calls check_connect",
+    "check_connect returns success",
+    "Agent explains device pairing and calls pair_device",
+    "pair_device returns success",
+    "Agent asks patient to confirm device is paired and connected",
+    "Patient confirms device paired successfully",
+    "Agent explains ECG recording step and calls recording_request",
+    "recording_request returns success",
+    "Patient confirms ECG recording completed",
+    "Agent calls check_record_ECG_correctly - returns 'ECG validation failed: No R-peaks detected'",
+    "Agent explains the issue to the patient",
+    "Agent asks patient to remain still and retry recording",
+    "Patient confirms ready to retry",
+    "Agent calls recording_request again",
+    "recording_request returns success",
+    "Patient confirms ECG recording completed",
+    "Agent calls check_record_ECG_correctly - returns 'ECG record saved successfully'",
+    "Agent calls finish_recording and provides completion summary"
+  ],
+
+  "conversation": [
+    {
+      "speaker": "Human",
+      "text": "",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Hello! I'm MediECG-Agent, your medical assistant. I'm here to help you record an ECG using your Bluetooth ECG sensor. I'll guide you through each step carefully.\n\nAre you ready to begin? Please let me know when you're ready to start.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Yes, I'm ready. Let's do this.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Great! Let's begin with the first step.\n\n**Step 1 — Bluetooth Check**\n\nI'm now going to check if your Bluetooth is enabled on your device.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "we succesfully check",
+      "tool_name": "check_connect",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! Your Bluetooth is enabled and working properly.\n\n**Step 2 — Device Pairing**\n\nNow I will check if your ECG device is paired with your device.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Pairing request sent successfully",
+      "tool_name": "pair_device",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! The pairing request was sent successfully. Please check your device and confirm when the ECG sensor is paired and connected.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Device paired successfully",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! Your ECG device is now paired successfully.\n\n**Step 3 — ECG Recording**\n\nNow I will start a 60-second ECG recording. Please remain as still as possible during this time to get a clear reading.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Recording request sent successfully",
+      "tool_name": "recording_request",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Great! The recording request has been sent successfully. Please remain still for the full 60 seconds while the recording takes place.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "ECG recording completed",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! Thank you for staying still during the recording.\n\n**Step 4 — Check Database Integrity**\n\nNow I will check if your ECG recording was saved correctly in our system and verify that all the data is valid.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "ECG validation failed: No R-peaks detected",
+      "tool_name": "check_record_ECG_correctly",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "I see there's an issue with the ECG recording. The system couldn't detect the characteristic R-peaks that should be present in a normal ECG. This usually happens when there's too much movement during the recording or if the electrodes aren't making good contact with your skin.\n\n**What we need to do:**\n\n1. Make sure the electrodes are firmly attached to your skin\n2. Try to remain completely still during the recording\n3. Avoid talking or any movement\n\nWould you like to try the ECG recording again? I'll restart the 60-second recording, and please try to stay as still as possible this time.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "Yes, let's try again. I'll be more still this time.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Great! Let's try again.\n\n**Step 3 — ECG Recording (Retry)**\n\nI will now start another 60-second ECG recording. Please remain completely still during this time.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "Recording request sent successfully",
+      "tool_name": "recording_request",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! The recording has started. Please remain still for the full 60 seconds.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Human",
+      "text": "ECG recording completed",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Excellent! Thank you for staying still during the recording.\n\n**Step 4 — Check Database Integrity (Retry)**\n\nNow I will check if this ECG recording was saved correctly.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "ECG record saved successfully.",
+      "tool_name": "check_record_ECG_correctly",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "Perfect! Your ECG recording has been successfully saved and validated. All the data is clean and properly stored in our system.\n\n**Step 5 — Finish**\n\nNow I'll complete the recording process.",
+      "tool_name": "",
+      "tool_call": ""
+    },
+    {
+      "speaker": "Tool",
+      "text": "we succesfully notify",
+      "tool_name": "finish_recording",
+      "tool_call": ""
+    },
+    {
+      "speaker": "IoT Agent",
+      "text": "**Recording Complete!**\n\nYour ECG recording is now complete and all your clinical data has been saved successfully. Thank you for your patience and for staying still during the second recording attempt. Your ECG data is now ready for medical review by your healthcare provider.",
+      "tool_name": "",
+      "tool_call": ""
+    }
+  ],
+
+  "langgraph_state": {
+    "patient_id": "a9b0c1d2-e3f4-5678-stuv-901234567890",
+    "current_agent": "IoT Agent",
+    "session_status": "completed",
+    "ecg_data": {
+      "recording_status": "completed",
+      "duration": 60,
+      "lead": "Lead II",
+      "signal_quality": "High",
+      "r_peaks_detected": 74,
+      "heart_rate_bpm": 74,
+      "sampling_rate": 250,
+      "saved_to_db": true,
+      "data_validated": true,
+      "data_cleaned": true,
+      "attempt_count": 2,
+      "failed_attempts": 1,
+      "successful_attempt": 2,
+      "quality_issues": [
+        {
+          "attempt": 1,
+          "issue": "No R-peaks detected",
+          "probable_cause": "Patient movement during recording",
+          "resolution": "Patient remained still for second attempt"
+        }
+      ],
+      "cleaned_data_path": "/storage/patients/a9b0c1d2-e3f4-5678-stuv-901234567890/ecg/ecg_cleaned_20260705_0900.json"
+    },
+    "error_logs": [
+      {
+        "tool": "check_record_ECG_correctly",
+        "attempt": 1,
+        "error": "ECG validation failed: No R-peaks detected",
+        "timestamp": "2026-07-05T08:58:15Z",
+        "resolved": true,
+        "resolution": "Patient retried recording with minimal movement"
+      }
+    ],
+    "orchestrator_queue": ["Daily Data Agent", "Imaging Agent"]
+  },
+
+  "tool_calls": [
+    {
+      "timestamp": "2026-07-05T08:55:15Z",
+      "tool": "check_connect",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "we succesfully check"
+    },
+    {
+      "timestamp": "2026-07-05T08:55:30Z",
+      "tool": "pair_device",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Pairing request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-05T08:56:15Z",
+      "tool": "recording_request",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Recording request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-05T08:57:15Z",
+      "tool": "check_record_ECG_correctly",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "ECG validation failed: No R-peaks detected"
+    },
+    {
+      "timestamp": "2026-07-05T08:58:30Z",
+      "tool": "recording_request",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "Recording request sent successfully"
+    },
+    {
+      "timestamp": "2026-07-05T08:59:30Z",
+      "tool": "check_record_ECG_correctly",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "ECG record saved successfully."
+    },
+    {
+      "timestamp": "2026-07-05T08:59:45Z",
+      "tool": "finish_recording",
+      "agent": "IoT Agent",
+      "params": {},
+      "result": "we succesfully notify"
+    }
+  ],
+
+  "hardware": {
+    "sampling_frequency": 250,
+    "packet_delivery_ratio": 0.95,
+    "ecg_quality": "Low"
+  }
+}
