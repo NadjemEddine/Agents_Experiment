@@ -195,13 +195,15 @@ Deviations occur only when workflow blocking conditions (unresolvable connectivi
 
 ## Hardware Summary
 
-Hardware metrics were recorded for informational purposes and do not affect evaluation scores:
+Hardware metrics were aggregated from all 37 scenario JSON files and do not affect evaluation scores:
 
-- **Sampling Frequency:** 500 Hz across scenarios
-- **Packet Delivery Ratio:** Varied by connectivity scenario
-- **ECG Quality:** Ranged from poor to excellent, correlating with scenario conditions
+| Metric | Result | Interpretation |
+|--------|--------|----------------|
+| Effective Sampling Frequency (Hz) | 500.0 | All scenarios used a 500 Hz sampling configuration. |
+| Packet Delivery Ratio (PDR) (%) | 87.9 | BLE communication was generally reliable, with lower ratios concentrated in connectivity-failure scenarios. |
+| High-Quality ECG Recordings (%) | 75.7 (28/37) | 28 scenarios reported `ecg_quality: High`; the remaining scenarios reflected low-quality or interrupted acquisitions. |
 
-*Per evaluation policy, hardware metrics are reported separately and not scored.*
+*Per evaluation policy, hardware metrics are reported separately and are not included in the scenario pass/fail score.*
 
 ---
 
