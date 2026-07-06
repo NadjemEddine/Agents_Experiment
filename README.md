@@ -17,7 +17,7 @@ The main report is [evaluation_report.md](evaluation_report.md). It summarizes a
 
 - Total scenarios: 37
 - Overall pass rate: 97.3% (36/37)
-- Primary failure: one Bluetooth connectivity false-positive in scenario C1
+
 - State consistency: 100%
 
 ## Repository Contents
@@ -25,6 +25,19 @@ The main report is [evaluation_report.md](evaluation_report.md). It summarizes a
 - Scenario JSON files for C, ECG, Bluetooth, and electrode test cases
 - `evaluation_report.md` with the final analysis and conclusions
 - `evaluations/` with per-scenario evaluation outputs
+- `ESP-32-code.ino` Arduino firmware for the ECG device
+
+## Arduino ECG Device Code
+
+The `ESP-32-code.ino` sketch is the ECG acquisition firmware for the ESP32-based sensor device paired with the AD8232 module. It samples the ECG signal at 500 Hz, applies filtering and QRS detection, packages data for BLE transmission, and includes signal-quality checks plus adaptive heartbeat timing logic.
+
+Key behaviors in the sketch include:
+
+- 500 Hz sampling with a 2 ms sampling interval
+- Baseline wander removal and 50 Hz notch filtering
+- Pan-Tompkins-style QRS detection with adaptive refractory timing
+- BLE packet formatting for ECG sample streaming
+- Signal-quality reporting and electrode-contact handling
 
 ## Notes
 
